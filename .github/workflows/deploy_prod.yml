@@ -115,7 +115,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -var-file=config/prod/terraform.tfvars -out=prod-plan.out
+        run: terraform plan -lock=false -var-file=config/prod/terraform.tfvars -out=prod-plan.out
         env:
           TENCENTCLOUD_SECRET_ID:  ${{ secrets.TENCENTCLOUD_SECRET_ID }}
           TENCENTCLOUD_SECRET_KEY:  ${{ secrets.TENCENTCLOUD_SECRET_KEY }}
