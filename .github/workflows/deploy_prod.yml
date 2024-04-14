@@ -48,23 +48,6 @@ jobs:
         with:
           terraform_version: 1.6.2 
 
-      - name: Find and Replace project
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "dynamic_env"
-          replace: "${{ secrets.PROJECT_NAME }}"
-          regex: false
-          include: "version.tf"      
-
-      - name: Find and Replace bucket string
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          find: "dynamic_bucket_string"
-          replace: "${{ secrets.BUCKET_STRING }}"
-          regex: false
-          include: "version.tf"      
-
-          
       - name: Find and Replace Env
         uses: jacobtomlinson/gha-find-replace@v3
         with:
@@ -83,7 +66,6 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate
-
 
   terraform_plan:
     # The type of runner that the job will run on
@@ -154,14 +136,6 @@ jobs:
           replace: "prod"
           regex: false
           include: "backend.tf"    
-
-      #- name: Find and Replace Secrets
-      #  uses: jacobtomlinson/gha-find-replace@v3
-      #  with:
-      #    find: "dynamic_random_password"
-      #    replace: ${{ secrets.ALICLOUD_RANDOM_PASSWORD }}
-      #    regex: false
-      #    include: ".github/workflows/deploy_prod.yml"  
 
       - name: Terraform Init
         id: init

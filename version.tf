@@ -9,7 +9,7 @@ terraform {
 
   backend "cos" {
     region = var.region
-    bucket = "dynamic_env-${var.project}-state-dynamic_bucket_string"
+    bucket = "dynamic_env-${var.project}-state-${var.bucket_string}"
     prefix = "terraform/state"
   }
 
