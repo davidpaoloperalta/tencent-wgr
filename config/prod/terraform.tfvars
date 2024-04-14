@@ -1,4 +1,4 @@
-region = ap-singapore
+region = "ap-singapore"
 project = "wager88"
 env_name = "prod"
 
