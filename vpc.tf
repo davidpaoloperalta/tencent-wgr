@@ -1,5 +1,7 @@
+# DECLARATION OF TENCENT AZ
 data "tencentcloud_availability_zones" "zones" {}
 
+# VPC AND SUBNETS
 resource "tencentcloud_vpc" "vpc" {
   cidr_block = var.vpc_cidr
   name       = "${var.env_name}-${var.project}-vpc"
@@ -45,6 +47,20 @@ resource "tencentcloud_subnet" "db_b_subnet" {
   is_multicast      = false
 }
 
+# NATGW
+resource "tencentcloud_eip" "eip" {
+  name = "${var.env_name}-${var.project}-pub-for-nat"
+}
+
+resource "tencentcloud_nat_gateway" "natgw" {
+  name             = "${var.env_name}-${var.project}-natgw"
+  vpc_id           = tencentcloud_vpc.vpc.id
+  bandwidth        = 100
+  max_concurrent   = 1000000
+  assigned_eip_set = [
+    tencentcloud_eip.eip.public_ip
+  ]
+}
 
 /*
 resource "tencentcloud_eip" "eip_1" {
