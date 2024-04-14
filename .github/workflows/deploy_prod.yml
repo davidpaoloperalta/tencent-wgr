@@ -60,10 +60,17 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          #replace: "wager88"
           replace: ${{ secrets.PROJECT_NAME }}
           regex: false
-          include: "backend.tf"    
+          include: "backend.tf"   
+
+      - name: Find and Replace project
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "dynamic_proj"
+          replace: ${{ secrets.PROJECT_NAME }}
+          regex: false
+          include: "config/prod/terraform.tfvars"   
    
       - name: Terraform Init
         id: init
@@ -103,10 +110,17 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          #replace: "wager88"
           replace: ${{ secrets.PROJECT_NAME }}
           regex: false
-          include: "backend.tf"    
+          include: "backend.tf"   
+
+      - name: Find and Replace project
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "dynamic_proj"
+          replace: ${{ secrets.PROJECT_NAME }}
+          regex: false
+          include: "config/prod/terraform.tfvars"    
 
       - name: Terraform Init
         id: init
@@ -159,10 +173,17 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          #replace: "wager88"
           replace: ${{ secrets.PROJECT_NAME }}
           regex: false
-          include: "backend.tf"    
+          include: "backend.tf"   
+
+      - name: Find and Replace project
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "dynamic_proj"
+          replace: ${{ secrets.PROJECT_NAME }}
+          regex: false
+          include: "config/prod/terraform.tfvars"        
 
       - name: Terraform Init
         id: init

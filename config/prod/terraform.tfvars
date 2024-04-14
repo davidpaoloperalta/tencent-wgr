@@ -1,5 +1,5 @@
 region = "ap-singapore"
-project = "wager88"
+project = "dynamic_proj"
 env_name = "prod"
 
 # networking
