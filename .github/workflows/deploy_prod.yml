@@ -60,7 +60,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          replace: "${{ secrets.PROJECT_NAME }}"
+          replace: ${{ secrets.PROJECT_NAME }}
           regex: false
           include: "backend.tf"   
 
@@ -68,7 +68,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          replace: "${{ secrets.PROJECT_NAME }}"
+          replace: ${{ secrets.PROJECT_NAME }}
           regex: false
           include: "config/prod/terraform.tfvars"   
    
@@ -110,7 +110,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          replace: "${{ secrets.PROJECT_NAME }}"
+          replace: ${{ secrets.PROJECT_NAME }}
           regex: false
           include: "backend.tf"   
   
@@ -118,7 +118,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          replace: "${{ secrets.PROJECT_NAME }}"
+          replace: ${{ secrets.PROJECT_NAME }}
           regex: false
           include: "config/prod/terraform.tfvars" 
 
@@ -173,7 +173,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          replace: "${{ secrets.PROJECT_NAME }}"
+          replace: ${{ secrets.PROJECT_NAME }}
           regex: false
           include: "backend.tf"   
     
@@ -181,7 +181,7 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_proj"
-          replace: "${{ secrets.PROJECT_NAME }}"
+          replace: ${{ secrets.PROJECT_NAME }}
           regex: false
           include: "config/prod/terraform.tfvars" 
 
