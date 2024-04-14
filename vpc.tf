@@ -1,3 +1,5 @@
+data "tencentcloud_availability_zones" "zones" {}
+
 resource "tencentcloud_vpc" "vpc" {
   cidr_block = var.vpc_cidr
   name       = "${var.env_name}-${var.project}-vpc"
