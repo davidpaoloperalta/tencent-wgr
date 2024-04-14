@@ -51,11 +51,19 @@ jobs:
       - name: Find and Replace Env
         uses: jacobtomlinson/gha-find-replace@v3
         with:
-          find: "dynamic_project_name"
+          find: "dynamic_env"
           replace: "prod"
           regex: false
-          include: "config/prod/terraform.tfvars"      
+          include: "backend.tf"   
 
+      - name: Find and Replace project
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "dynamic_proj"
+          replace: "wager88"
+          regex: false
+          include: "backend.tf"    
+   
       - name: Terraform Init
         id: init
         run: terraform init
@@ -82,13 +90,21 @@ jobs:
       - name: View Contents
         run: ls -l
 
-      - name: Find and Replace
+      - name: Find and Replace Env
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_env"
           replace: "prod"
           regex: false
-          include: "version.tf"    
+          include: "backend.tf"   
+
+      - name: Find and Replace project
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "dynamic_proj"
+          replace: "wager88"
+          regex: false
+          include: "backend.tf"    
 
       - name: Terraform Init
         id: init
@@ -129,11 +145,19 @@ jobs:
       - name: View Contents
         run: ls -l
 
-      - name: Find and Replace
+      - name: Find and Replace Env
         uses: jacobtomlinson/gha-find-replace@v3
         with:
           find: "dynamic_env"
           replace: "prod"
+          regex: false
+          include: "backend.tf"   
+
+      - name: Find and Replace project
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "dynamic_proj"
+          replace: "wager88"
           regex: false
           include: "backend.tf"    
 
