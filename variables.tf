@@ -1,16 +1,16 @@
 variable "vpc_cidr" {
-  default = "10.1.0.0/21"
+  default = "0.0.0.0/0"
 }
 
 variable "region" {
   default = "ap-singapore"
 }
 
-
-variable "bandwidth" {
-  default = 100
+variable "project" {
+  default = "undefined_proj"
 }
 
-variable "max_concurrent" {
-  default = 1000000
+variable "env_name" {
+  default = "undefined_env"
 }
+
