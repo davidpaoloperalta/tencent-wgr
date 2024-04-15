@@ -66,5 +66,5 @@ resource "tencentcloud_route_table_entry" "nat_route_entry" {
   route_table_id         = tencentcloud_vpc.vpc.default_route_table_id
   destination_cidr_block = "0.0.0.0/0"
   next_type              = "NAT"
-  next_hub               = tencentcloud_nat_gateway.rtb_entry_instance.id
+  next_hub               = tencentcloud_nat_gateway.natgw.id
 }
