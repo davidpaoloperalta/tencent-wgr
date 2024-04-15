@@ -34,3 +34,7 @@ variable "env_name" {
   default = "undefined_env"
 }
 
+variable "certificate_id" {
+  default = "undefined_cert"
+}
+
