@@ -18,7 +18,7 @@ resource "tencentcloud_clb_instance" "internal_clb" {
   clb_name     = "${var.env_name}-${var.project}-priv-lb"
   project_id   = 0
   vpc_id       = tencentcloud_vpc.vpc.id
-  subnet_id    = tencentcloud_subnet.priv_a_subnet.subnet_id
+  subnet_id    = tencentcloud_subnet.priv_a_subnet.id
 }
 
 resource "tencentcloud_clb_listener" "http_listener" {
