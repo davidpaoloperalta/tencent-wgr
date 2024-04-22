@@ -1,6 +1,7 @@
 resource "tencentcloud_mariadb_instance" "instance" {
   instance_name = "${var.env_name}-${var.project}-db"
   zones      = [data.tencentcloud_availability_zones.zones.zones.2.name]
+  period     = "0"
   node_count = 2
   memory     = var.db_memory
   storage    = var.db_disk
