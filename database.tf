@@ -5,7 +5,7 @@ resource "tencentcloud_mariadb_instance" "instance" {
   memory     = var.db_memory
   storage    = var.db_disk
   vpc_id     = tencentcloud_vpc.vpc.id
-  subnet_id  = tencentcloud_subnet.db_a_subnet
+  subnet_id  = tencentcloud_subnet.db_a_subnet.id
   db_version_id = var.db_version
   security_group_ids = [tencentcloud_security_group.db_security_groups.id]
 
