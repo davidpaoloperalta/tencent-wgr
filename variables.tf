@@ -38,3 +38,19 @@ variable "certificate_id" {
   default = "undefined_cert"
 }
 
+variable "db_cpu" {
+  default = "0"
+}
+
+variable "db_memory" {
+  default = "0"
+}
+
+variable "db_disk" {
+  default = "0"
+}
+
+variable "db_version" {
+  default = "0"
+}
+
