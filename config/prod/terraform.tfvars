@@ -14,7 +14,6 @@ db_b_cidr = "10.30.5.0/24"
 certificate_id = "DkW6ZwED"
 
 # DB Specs
-db_cpu = "1"
 db_memory = "2"
 db_disk = "10"
 db_version = "10.4.12"
