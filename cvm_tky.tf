@@ -36,8 +36,6 @@ resource "tencentcloud_eip_association" "tky_eip_assoc" {
   instance_id = tencentcloud_instance.cvm_bridge.id
 }
 
-
-
 resource "tencentcloud_security_group" "cvm_security_group_tky" {
   provider = tencentcloud.tky
   name        = "${var.env_name}-${var.project}-cvm-sg"

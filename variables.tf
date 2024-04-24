@@ -68,3 +68,7 @@ variable "job_proc_image" {
   default = "null"
 }
 
+variable "bridge_image" {
+  default = "null"
+}
+
