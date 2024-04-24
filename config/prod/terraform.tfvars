@@ -2,6 +2,8 @@ region = "ap-singapore"
 project = "dynamic_proj"
 env_name = "prod"
 
+bridge_region = "ap-tokyo"
+
 // networking
 vpc_cidr = "10.30.0.0/16"
 pub_cidr = "10.30.0.0/24"
@@ -21,3 +23,5 @@ db_version = "10.4.12"
 
 // CVM
 bo_fe_image = "img-22trbn9x"
+bo_be_image = "img-22trbn9x"
+job_proc_image = "img-22trbn9x"

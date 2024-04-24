@@ -56,3 +56,11 @@ variable "bo_fe_image" {
   default = "null"
 }
 
+variable "bo_be_image" {
+  default = "null"
+}
+
+variable "job_proc_image" {
+  default = "null"
+}
+
