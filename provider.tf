@@ -12,7 +12,7 @@ provider "tencentcloud" {
     region = var.region
 }
 
-provider "tencentcloudjp" {
+provider "tencentcloud" {
   alias  = "tky"
   region = var.bridge_region
 }

@@ -1,6 +1,6 @@
 // Bridge
 resource "tencentcloud_instance" "cvm_bridge" {
-  provider = tencentcloudjp.tky
+  provider = tencentcloud.tky
   instance_name     = "${var.env_name}-${var.project}-bridge"
   availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
   image_id          = var.bridge_image
@@ -26,12 +26,12 @@ resource "tencentcloud_instance" "cvm_bridge" {
 }
 
 resource "tencentcloud_eip" "tky_eip" {
-  provider = tencentcloudjp.tky
+  provider = tencentcloud.tky
   name = "${var.env_name}-${var.project}-pub-for-bridge"
 }
 
 resource "tencentcloud_eip_association" "tky_eip_assoc" {
-  provider = tencentcloudjp.tky
+  provider = tencentcloud.tky
   eip_id      = tencentcloud_eip.tky_eip.id
   instance_id = tencentcloud_instance.cvm_bridge.id
 }
@@ -39,13 +39,13 @@ resource "tencentcloud_eip_association" "tky_eip_assoc" {
 
 
 resource "tencentcloud_security_group" "cvm_security_group_tky" {
-  provider = tencentcloudjp.tky
+  provider = tencentcloud.tky
   name        = "${var.env_name}-${var.project}-cvm-sg"
   description = "${var.env_name}-${var.project} security group"
 }
 
 resource "tencentcloud_security_group_lite_rule" "cvm_security_group_rules_tky" {
-  provider = tencentcloudjp.tky
+  provider = tencentcloud.tky
   security_group_id = tencentcloud_security_group.cvm_security_group_tky.id
 
   ingress = [
