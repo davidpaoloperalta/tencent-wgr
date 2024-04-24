@@ -5,7 +5,7 @@ data "tencentcloud_availability_zones" "tky_zones" {
 // Bridge
 resource "tencentcloud_instance" "cvm_bridge" {
   provider = tencentcloud.tky
-  instance_name     = "${var.env_name}-${var.project}-bridge"
+  instance_name     = "${var.env_name}-${var.project}-proxy"
   availability_zone = data.tencentcloud_availability_zones.tky_zones.zones.0.name
   image_id          = var.bridge_image
   instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
