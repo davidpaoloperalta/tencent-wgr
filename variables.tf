@@ -26,6 +26,10 @@ variable "region" {
   default = "ap-singapore"
 }
 
+variable "bridge_region" {
+  default = "ap-tokyo"
+}
+
 variable "project" {
   default = "undefined_proj"
 }
