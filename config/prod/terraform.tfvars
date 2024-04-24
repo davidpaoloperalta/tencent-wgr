@@ -1,7 +1,6 @@
 region = "ap-singapore"
 project = "dynamic_proj"
 env_name = "prod"
-project_id = "1000004061"
 
 bridge_region = "ap-tokyo"
 
