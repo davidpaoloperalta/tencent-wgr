@@ -34,6 +34,10 @@ variable "project" {
   default = "undefined_proj"
 }
 
+variable "project_id" {
+  default = "0"
+}
+
 variable "env_name" {
   default = "undefined_env"
 }
