@@ -18,8 +18,8 @@ resource "tencentcloud_instance" "cvm_bo_fe" {
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
   project_id        = tencentcloud_project.project.id
-  vpc_id            = tencentcloud_vpc.app.id
-  subnet_id         = tencentcloud_subnet.app.id
+  vpc_id            = tencentcloud_vpc.vpc.id
+  subnet_id         = tencentcloud_subnet.priv_a_subnet.id
   orderly_security_groups = [tencentcloud_security_group.cvm_security_group.id]
 /*
   data_disks {
