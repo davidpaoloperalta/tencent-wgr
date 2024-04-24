@@ -11,7 +11,7 @@ resource "tencentcloud_instance" "cvm_bridge" {
   instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
-  internet_max_bandwidth_out = 100
+  //internet_max_bandwidth_out = 100
   project_id        = tencentcloud_project.project.id
   orderly_security_groups = [tencentcloud_security_group.cvm_security_group_tky.id]
 
