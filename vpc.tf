@@ -50,6 +50,7 @@ resource "tencentcloud_subnet" "db_b_subnet" {
 # NATGW ----------------------------------------------------------------------
 resource "tencentcloud_eip" "eip" {
   name = "${var.env_name}-${var.project}-pub-for-nat"
+  internet_max_bandwidth_out = 100
 }
 
 resource "tencentcloud_nat_gateway" "natgw" {

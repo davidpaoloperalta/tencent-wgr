@@ -2,7 +2,7 @@
 # EIP for LB ------------------------------------------------------
 resource "tencentcloud_eip" "lb_eip" {
   name                 = "${var.env_name}-${var.project}-pub-for-lb"
-  internet_max_bandwidth_out = "10"
+  internet_max_bandwidth_out = 100
   type                 = "EIP"
 }
 
