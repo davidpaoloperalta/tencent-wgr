@@ -1,26 +1,15 @@
-// instantiate instance types
-data "tencentcloud_instance_types" "instance_types" {
-  filter {
-    name   = "instance-family"
-    values = ["S1", "S2", "S3", "S4", "S5"]
-  }
-
-  cpu_core_count   = 4
-  exclude_sold_out = true
-}
-
-// Bo-Fe
+// Bridge
 resource "tencentcloud_instance" "cvm_bridge" {
+  provider = tencentcloudjp.tky
   instance_name     = "${var.env_name}-${var.project}-bridge"
   availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
-  image_id          = var.bo_fe_image
+  image_id          = var.bridge_image
   instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
+  internet_max_bandwidth_out = 100
   project_id        = tencentcloud_project.project.id
-  vpc_id            = tencentcloud_vpc.vpc.id
-  subnet_id         = tencentcloud_subnet.priv_a_subnet.id
-  orderly_security_groups = [tencentcloud_security_group.cvm_security_group.id]
+  orderly_security_groups = [tencentcloud_security_group.cvm_security_group_tky.id]
 /*
   data_disks {
     data_disk_type = "CLOUD_BSSD"
@@ -36,12 +25,27 @@ resource "tencentcloud_instance" "cvm_bridge" {
 */
 }
 
+resource "tencentcloud_eip" "tky_eip" {
+  provider = tencentcloudjp.tky
+  name = "${var.env_name}-${var.project}-pub-for-bridge"
+}
+
+resource "tencentcloud_eip_association" "tky_eip_assoc" {
+  provider = tencentcloudjp.tky
+  eip_id      = tencentcloud_eip.tky_eip.id
+  instance_id = tencentcloud_instance.cvm_bridge.id
+}
+
+
+
 resource "tencentcloud_security_group" "cvm_security_group_tky" {
+  provider = tencentcloudjp.tky
   name        = "${var.env_name}-${var.project}-cvm-sg"
   description = "${var.env_name}-${var.project} security group"
 }
 
 resource "tencentcloud_security_group_lite_rule" "cvm_security_group_rules_tky" {
+  provider = tencentcloudjp.tky
   security_group_id = tencentcloud_security_group.cvm_security_group_tky.id
 
   ingress = [
