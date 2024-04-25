@@ -34,10 +34,6 @@ variable "project" {
   default = "undefined_proj"
 }
 
-variable "project_id" {
-  default = "0"
-}
-
 variable "env_name" {
   default = "undefined_env"
 }
@@ -60,7 +56,15 @@ variable "db_version" {
 }
 */
 
+variable "gl_fe_image" {
+  default = "null"
+}
+
 variable "bo_fe_image" {
+  default = "null"
+}
+
+variable "gl_be_image" {
   default = "null"
 }
 
