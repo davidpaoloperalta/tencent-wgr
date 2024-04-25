@@ -21,6 +21,8 @@ db_disk = "10"
 db_version = "10.4.12"
 
 // CVM
+gl_fe_image = "img-22trbn9x"
+bo_fe_image = "img-22trbn9x"
 gl_be_image = "img-22trbn9x"
 bo_be_image = "img-22trbn9x"
 job_proc_image = "img-22trbn9x"
