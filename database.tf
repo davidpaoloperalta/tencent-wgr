@@ -1,3 +1,4 @@
+/*
 resource "tencentcloud_mariadb_instance" "instance" {
   instance_name = "${var.env_name}-${var.project}-db"
   zones      = [data.tencentcloud_availability_zones.zones.zones.2.name]
@@ -24,7 +25,7 @@ resource "tencentcloud_mariadb_instance" "instance" {
   #dcn_region      = var.region
   #dcn_instance_id = ""
 }
-
+*/
 resource "tencentcloud_security_group" "db_security_groups" {
   name        = "${var.env_name}-${var.project}-db-sg"
   description = "Database security group"
