@@ -56,7 +56,15 @@ variable "db_version" {
 }
 */
 
+variable "gl_fe_image" {
+  default = "null"
+}
+
 variable "bo_fe_image" {
+  default = "null"
+}
+
+variable "gl_be_image" {
   default = "null"
 }
 

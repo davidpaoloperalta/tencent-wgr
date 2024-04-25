@@ -9,11 +9,44 @@ data "tencentcloud_instance_types" "instance_types" {
   exclude_sold_out = true
 }
 
-// Bo-Fe
+// gl-fe
+resource "tencentcloud_instance" "cvm_gl_fe" {
+  count             = var.env_name == "prod" ? 1 : 0
+  instance_name     = "${var.env_name}-${var.project}-gl-fe"
+  availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
+  image_id          = var.gl_fe_image
+  instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
+  system_disk_type  = "CLOUD_BSSD"
+  system_disk_size  = 100
+  project_id        = tencentcloud_project.project.id
+  vpc_id            = tencentcloud_vpc.vpc.id
+  subnet_id         = tencentcloud_subnet.priv_a_subnet.id
+  orderly_security_groups = [tencentcloud_security_group.cvm_security_group.id]
+
+}
+
+// bo-fe
 resource "tencentcloud_instance" "cvm_bo_fe" {
+  count             = var.env_name == "prod" ? 1 : 0
   instance_name     = "${var.env_name}-${var.project}-bo-fe"
   availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
   image_id          = var.bo_fe_image
+  instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
+  system_disk_type  = "CLOUD_BSSD"
+  system_disk_size  = 100
+  project_id        = tencentcloud_project.project.id
+  vpc_id            = tencentcloud_vpc.vpc.id
+  subnet_id         = tencentcloud_subnet.priv_a_subnet.id
+  orderly_security_groups = [tencentcloud_security_group.cvm_security_group.id]
+
+}
+
+
+// gl-be
+resource "tencentcloud_instance" "cvm_gl_be" {
+  instance_name     = "${var.env_name}-${var.project}-gl-be"
+  availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
+  image_id          = var.gl_be_image
   instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
