@@ -40,7 +40,7 @@ resource "tencentcloud_clb_listener" "https_listener" {
 // GL-FE RULE
 resource "tencentcloud_clb_listener_rule" "gl_fe_rule" {
   count                      = var.env_name == "prod" ? 1 : 0
-  listener_id                = tencentcloud_clb_listener.https_listener.id
+  listener_id                = tencentcloud_clb_listener.https_listener.listener_id
   clb_id                     = tencentcloud_clb_instance.internal_clb.id
   domain                     = var.gl_fe_subdomain
   url                        = "/"
@@ -62,7 +62,7 @@ resource "tencentcloud_clb_listener_rule" "gl_fe_rule" {
 resource "tencentcloud_clb_attachment" "gl_fe_rule_attachment" {
   count       = var.env_name == "prod" ? 1 : 0
   clb_id      = tencentcloud_clb_instance.internal_clb.id
-  listener_id = tencentcloud_clb_listener.https_listener.id
+  listener_id = tencentcloud_clb_listener.https_listener.listener_id
   rule_id     = tencentcloud_clb_listener_rule.gl_fe_rule[count.index].id
 
   targets {
@@ -75,7 +75,7 @@ resource "tencentcloud_clb_attachment" "gl_fe_rule_attachment" {
 // BO-FE RULE
 resource "tencentcloud_clb_listener_rule" "bo_fe_rule" {
   count                      = var.env_name == "prod" ? 1 : 0
-  listener_id                = tencentcloud_clb_listener.https_listener.id
+  listener_id                = tencentcloud_clb_listener.https_listener.listener_id
   clb_id                     = tencentcloud_clb_instance.internal_clb.id
   domain                     = var.gl_fe_subdomain
   url                        = "/"
@@ -97,7 +97,7 @@ resource "tencentcloud_clb_listener_rule" "bo_fe_rule" {
 resource "tencentcloud_clb_attachment" "bo_fe_rule_attachment" {
   count       = var.env_name == "prod" ? 1 : 0
   clb_id      = tencentcloud_clb_instance.internal_clb.id
-  listener_id = tencentcloud_clb_listener.https_listener.id
+  listener_id = tencentcloud_clb_listener.https_listener.listener_id
   rule_id     = tencentcloud_clb_listener_rule.bo_fe_rule[count.index].id
 
   targets {
@@ -108,7 +108,7 @@ resource "tencentcloud_clb_attachment" "bo_fe_rule_attachment" {
 }
 
 resource "tencentcloud_clb_listener_rule" "gl_be_rule" {
-  listener_id                = tencentcloud_clb_listener.https_listener.id
+  listener_id                = tencentcloud_clb_listener.https_listener.listener_id
   clb_id                     = tencentcloud_clb_instance.internal_clb.id
   domain                     = var.gl_be_subdomain
   url                        = "/"
@@ -130,7 +130,7 @@ resource "tencentcloud_clb_listener_rule" "gl_be_rule" {
 // GL-BE RULE
 resource "tencentcloud_clb_attachment" "gl_be_rule_attachment" {
   clb_id      = tencentcloud_clb_instance.internal_clb.id
-  listener_id = tencentcloud_clb_listener.https_listener.id
+  listener_id = tencentcloud_clb_listener.https_listener.listener_id
   rule_id     = tencentcloud_clb_listener_rule.gl_be_rule.id
 
   targets {
