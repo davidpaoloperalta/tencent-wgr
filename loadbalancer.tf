@@ -155,7 +155,6 @@ resource "tencentcloud_clb_attachment" "gl_be_rule_attachment" {
 }
 
 resource "tencentcloud_clb_redirection" "gl_be_rule_rewrite" {
-  count              = var.env_name == "prod" ? 1 : 0
   clb_id             = tencentcloud_clb_instance.internal_clb.id
   target_listener_id = tencentcloud_clb_listener.https_listener.listener_id
   target_rule_id     = tencentcloud_clb_listener_rule.gl_be_rule[count.index].rule_id
@@ -195,7 +194,6 @@ resource "tencentcloud_clb_attachment" "bo_be_rule_attachment" {
 }
 
 resource "tencentcloud_clb_redirection" "bo_be_rule_rewrite" {
-  count              = var.env_name == "prod" ? 1 : 0
   clb_id             = tencentcloud_clb_instance.internal_clb.id
   target_listener_id = tencentcloud_clb_listener.https_listener.listener_id
   target_rule_id     = tencentcloud_clb_listener_rule.bo_be_rule[count.index].rule_id
