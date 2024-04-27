@@ -63,10 +63,10 @@ resource "tencentcloud_clb_attachment" "gl_fe_rule_attachment" {
   count       = var.env_name == "prod" ? 1 : 0
   clb_id      = tencentcloud_clb_instance.internal_clb.id
   listener_id = tencentcloud_clb_listener.https_listener.id
-  rule_id     = tencentcloud_clb_listener_rule.gl_fe_rule.id
+  rule_id     = tencentcloud_clb_listener_rule.gl_fe_rule[count.index].id
 
   targets {
-    instance_id = tencentcloud_instance.cvm_gl_fe.id
+    instance_id = tencentcloud_instance.cvm_gl_fe[count.index].id
     port        = 80
     weight      = 10
   }
@@ -98,10 +98,10 @@ resource "tencentcloud_clb_attachment" "bo_fe_rule_attachment" {
   count       = var.env_name == "prod" ? 1 : 0
   clb_id      = tencentcloud_clb_instance.internal_clb.id
   listener_id = tencentcloud_clb_listener.https_listener.id
-  rule_id     = tencentcloud_clb_listener_rule.bo_fe_rule.id
+  rule_id     = tencentcloud_clb_listener_rule.bo_fe_rule[count.index].id
 
   targets {
-    instance_id = tencentcloud_instance.cvm_bo_fe.id
+    instance_id = tencentcloud_instance.cvm_bo_fe[count.index].id
     port        = 80
     weight      = 10
   }
