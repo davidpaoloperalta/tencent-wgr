@@ -54,7 +54,6 @@ resource "tencentcloud_clb_listener_rule" "gl_fe_rule" {
   health_check_http_method   = "GET"
   certificate_ssl_mode       = "UNIDIRECTIONAL"
   certificate_id             = var.certificate_id
-  session_expire_time        = 30
   scheduler                  = "WRR"
   target_type                = "NODE"
 }
@@ -89,7 +88,6 @@ resource "tencentcloud_clb_listener_rule" "bo_fe_rule" {
   health_check_http_method   = "GET"
   certificate_ssl_mode       = "UNIDIRECTIONAL"
   certificate_id             = var.certificate_id
-  session_expire_time        = 30
   scheduler                  = "WRR"
   target_type                = "NODE"
 }
@@ -107,6 +105,7 @@ resource "tencentcloud_clb_attachment" "bo_fe_rule_attachment" {
   }
 }
 
+// GL-BE RULE
 resource "tencentcloud_clb_listener_rule" "gl_be_rule" {
   listener_id                = tencentcloud_clb_listener.https_listener.listener_id
   clb_id                     = tencentcloud_clb_instance.internal_clb.id
@@ -122,12 +121,11 @@ resource "tencentcloud_clb_listener_rule" "gl_be_rule" {
   health_check_http_method   = "GET"
   certificate_ssl_mode       = "UNIDIRECTIONAL"
   certificate_id             = var.certificate_id
-  session_expire_time        = 30
   scheduler                  = "WRR"
   target_type                = "NODE"
 }
 
-// GL-BE RULE
+
 resource "tencentcloud_clb_attachment" "gl_be_rule_attachment" {
   clb_id      = tencentcloud_clb_instance.internal_clb.id
   listener_id = tencentcloud_clb_listener.https_listener.listener_id
@@ -135,6 +133,70 @@ resource "tencentcloud_clb_attachment" "gl_be_rule_attachment" {
 
   targets {
     instance_id = tencentcloud_instance.cvm_gl_be.id
+    port        = 80
+    weight      = 10
+  }
+}
+
+// BO-BE RULE
+resource "tencentcloud_clb_listener_rule" "bo_be_rule" {
+  listener_id                = tencentcloud_clb_listener.https_listener.listener_id
+  clb_id                     = tencentcloud_clb_instance.internal_clb.id
+  domain                     = var.bo_be_subdomain
+  url                        = "/"
+  health_check_switch        = true
+  health_check_interval_time = 5
+  health_check_health_num    = 3
+  health_check_unhealth_num  = 3
+  health_check_http_code     = 2
+  health_check_http_path     = "/"
+  health_check_http_domain   = var.bo_be_subdomain
+  health_check_http_method   = "GET"
+  certificate_ssl_mode       = "UNIDIRECTIONAL"
+  certificate_id             = var.certificate_id
+  scheduler                  = "WRR"
+  target_type                = "NODE"
+}
+
+resource "tencentcloud_clb_attachment" "bo_be_rule_attachment" {
+  clb_id      = tencentcloud_clb_instance.internal_clb.id
+  listener_id = tencentcloud_clb_listener.https_listener.listener_id
+  rule_id     = tencentcloud_clb_listener_rule.bo_be_rule.rule_id
+
+  targets {
+    instance_id = tencentcloud_instance.cvm_bo_be.id
+    port        = 80
+    weight      = 10
+  }
+}
+
+// JOBPROC RULE
+resource "tencentcloud_clb_listener_rule" "job_proc_rule" {
+  listener_id                = tencentcloud_clb_listener.https_listener.listener_id
+  clb_id                     = tencentcloud_clb_instance.internal_clb.id
+  domain                     = var.jp_subdomain
+  url                        = "/"
+  health_check_switch        = true
+  health_check_interval_time = 5
+  health_check_health_num    = 3
+  health_check_unhealth_num  = 3
+  health_check_http_code     = 2
+  health_check_http_path     = "/"
+  health_check_http_domain   = var.jp_subdomain
+  health_check_http_method   = "GET"
+  certificate_ssl_mode       = "UNIDIRECTIONAL"
+  certificate_id             = var.certificate_id
+  scheduler                  = "WRR"
+  target_type                = "NODE"
+}
+
+resource "tencentcloud_clb_attachment" "job_proc_rule_attachment" {
+  clb_id      = tencentcloud_clb_instance.internal_clb.id
+  listener_id = tencentcloud_clb_listener.https_listener.listener_id
+  rule_id     = tencentcloud_clb_listener_rule.job_proc_rule.rule_id
+
+  targets {
+    instance_id = tencentcloud_instance.cvm_job_proc.id
     port        = 80
     weight      = 10
   }
