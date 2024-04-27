@@ -1,3 +1,4 @@
+/*
 // instantiate instance types
 data "tencentcloud_instance_types" "instance_types" {
   filter {
@@ -8,6 +9,7 @@ data "tencentcloud_instance_types" "instance_types" {
   cpu_core_count   = 2
   exclude_sold_out = true
 }
+*/
 
 // gl-fe
 resource "tencentcloud_instance" "cvm_gl_fe" {
@@ -15,7 +17,7 @@ resource "tencentcloud_instance" "cvm_gl_fe" {
   instance_name     = "${var.env_name}-${var.project}-gl-fe"
   availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
   image_id          = var.gl_fe_image
-  instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
+  instance_type     = var.instance_type
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
   project_id        = tencentcloud_project.project.id
@@ -31,7 +33,7 @@ resource "tencentcloud_instance" "cvm_bo_fe" {
   instance_name     = "${var.env_name}-${var.project}-bo-fe"
   availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
   image_id          = var.bo_fe_image
-  instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
+  instance_type     = var.instance_type
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
   project_id        = tencentcloud_project.project.id
@@ -47,7 +49,7 @@ resource "tencentcloud_instance" "cvm_gl_be" {
   instance_name     = "${var.env_name}-${var.project}-gl-be"
   availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
   image_id          = var.gl_be_image
-  instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
+  instance_type     = var.instance_type
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
   project_id        = tencentcloud_project.project.id
@@ -74,7 +76,7 @@ resource "tencentcloud_instance" "cvm_bo_be" {
   instance_name     = "${var.env_name}-${var.project}-bo-be"
   availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
   image_id          = var.bo_be_image
-  instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
+  instance_type     = var.instance_type
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
   project_id        = tencentcloud_project.project.id
@@ -89,7 +91,7 @@ resource "tencentcloud_instance" "cvm_job_proc" {
   instance_name     = "${var.env_name}-${var.project}-jp"
   availability_zone = data.tencentcloud_availability_zones.zones.zones.0.name
   image_id          = var.job_proc_image
-  instance_type     = data.tencentcloud_instance_types.instance_types.instance_types.1.instance_type
+  instance_type     = var.instance_type
   system_disk_type  = "CLOUD_BSSD"
   system_disk_size  = 100
   project_id        = tencentcloud_project.project.id
