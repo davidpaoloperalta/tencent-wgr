@@ -13,9 +13,10 @@ resource "tencentcloud_eip_association" "lb_eip_association" {
 
 # LB ------------------------------------------------------------
 resource "tencentcloud_clb_instance" "internal_clb" {
+  load_balancer_pass_to_target = true
   network_type = "INTERNAL"
   clb_name     = "${var.env_name}-${var.project}-priv-lb"
-  project_id   = tencentcloud_project.project.id
+  project_id   = 0
   vpc_id       = tencentcloud_vpc.vpc.id
   subnet_id    = tencentcloud_subnet.priv_a_subnet.id
 }
