@@ -80,3 +80,27 @@ variable "bridge_image" {
   default = "null"
 }
 
+variable "main_domain" {
+  default = "null"
+}
+
+variable "gl_fe_subdomain" {
+  default = "null"
+}
+
+variable "gl_be_subdomain" {
+  default = "null"
+}
+
+variable "bo_fe_subdomain" {
+  default = "null"
+}
+
+variable "bo_be_subdomain" {
+  default = "null"
+}
+
+variable "jp_subdomain" {
+  default = "null"
+}
+
