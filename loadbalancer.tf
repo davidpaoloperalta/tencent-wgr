@@ -36,7 +36,7 @@ resource "tencentcloud_clb_listener" "https_listener" {
   certificate_id       = var.certificate_id
   sni_switch           = true
 }
-
+/*
 // GL-FE RULE
 resource "tencentcloud_clb_listener_rule" "gl_fe_rule" {
   count                      = var.env_name == "prod" ? 1 : 0
@@ -78,7 +78,7 @@ resource "tencentcloud_clb_redirection" "gl_fe_rule_rewrite" {
   target_rule_id     = tencentcloud_clb_listener_rule.gl_fe_rule[count.index].rule_id
   is_auto_rewrite    = true
 }
-
+*/
 // BO-FE RULE
 resource "tencentcloud_clb_listener_rule" "bo_fe_rule" {
   count                      = var.env_name == "prod" ? 1 : 0
