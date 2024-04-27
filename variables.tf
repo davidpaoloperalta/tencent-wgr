@@ -104,3 +104,7 @@ variable "jp_subdomain" {
   default = "null"
 }
 
+variable "instance_type" {
+  default = "null"
+}
+
