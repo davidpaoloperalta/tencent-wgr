@@ -84,7 +84,7 @@ resource "tencentcloud_clb_listener_rule" "bo_fe_rule" {
   count                      = var.env_name == "prod" ? 1 : 0
   listener_id                = tencentcloud_clb_listener.https_listener.listener_id
   clb_id                     = tencentcloud_clb_instance.internal_clb.id
-  domain                     = var.gl_fe_subdomain
+  domain                     = var.bo_fe_subdomain
   url                        = "/"
   health_check_switch        = true
   health_check_interval_time = 5
@@ -92,7 +92,7 @@ resource "tencentcloud_clb_listener_rule" "bo_fe_rule" {
   health_check_unhealth_num  = 3
   health_check_http_code     = 2
   health_check_http_path     = "/"
-  health_check_http_domain   = var.gl_fe_subdomain
+  health_check_http_domain   = var.bo_fe_subdomain
   health_check_http_method   = "GET"
   certificate_ssl_mode       = "UNIDIRECTIONAL"
   certificate_id             = var.certificate_id
