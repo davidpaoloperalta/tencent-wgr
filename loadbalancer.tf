@@ -49,8 +49,8 @@ resource "tencentcloud_clb_listener_rule" "gl_fe_rule" {
   health_check_health_num    = 3
   health_check_unhealth_num  = 3
   health_check_http_code     = 2
-  health_check_http_path     = "Default Path"
-  health_check_http_domain   = "Default Domain"
+  health_check_http_path     = "/"
+  health_check_http_domain   = var.gl_fe_subdomain
   health_check_http_method   = "GET"
   certificate_ssl_mode       = "UNIDIRECTIONAL"
   certificate_id             = var.certificate_id
