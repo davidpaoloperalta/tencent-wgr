@@ -13,9 +13,10 @@ resource "tencentcloud_eip_association" "lb_eip_association" {
 
 # LB ------------------------------------------------------------
 resource "tencentcloud_clb_instance" "internal_clb" {
+  load_balancer_pass_to_target = true
   network_type = "INTERNAL"
   clb_name     = "${var.env_name}-${var.project}-priv-lb"
-  project_id   = 0
+  project_id   = tencentcloud_project.project.id
   vpc_id       = tencentcloud_vpc.vpc.id
   subnet_id    = tencentcloud_subnet.priv_a_subnet.id
 }
@@ -112,7 +113,7 @@ resource "tencentcloud_clb_attachment" "bo_fe_rule_attachment" {
     weight      = 10
   }
 }
-/*
+
 resource "tencentcloud_clb_redirection" "bo_fe_rule_rewrite" {
   count              = var.env_name == "prod" ? 1 : 0
   clb_id             = tencentcloud_clb_instance.internal_clb.id
@@ -120,7 +121,7 @@ resource "tencentcloud_clb_redirection" "bo_fe_rule_rewrite" {
   target_rule_id     = tencentcloud_clb_listener_rule.bo_fe_rule[count.index].rule_id
   is_auto_rewrite    = true
 }
-*/
+
 // GL-BE RULE
 resource "tencentcloud_clb_listener_rule" "gl_be_rule" {
   listener_id                = tencentcloud_clb_listener.https_listener.listener_id
