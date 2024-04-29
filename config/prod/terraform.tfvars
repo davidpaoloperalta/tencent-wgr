@@ -29,10 +29,10 @@ job_proc_image = "img-22trbn9x"
 bridge_image = "img-22trbn9x"
 
 // domains
-main_domain = "dynamic_proj.com"
-gl_fe_subdomain = "www.dynamic_proj.com"
-gl_be_subdomain = "gl-be.dynamic_proj.com"
-bo_fe_subdomain = "bo-fe.dynamic_proj.com"
-bo_be_subdomain = "bo-be.dynamic_proj.com"
-jp_subdomain = "jobproc.dynamic_proj.com"
+main_domain = "dynamic_proj.vip"
+gl_fe_subdomain = "www.dynamic_proj.vip"
+gl_be_subdomain = "gl-be.dynamic_proj.vip"
+bo_fe_subdomain = "bo-fe.dynamic_proj.vip"
+bo_be_subdomain = "bo-be.dynamic_proj.vip"
+jp_subdomain = "jobproc.dynamic_proj.vip"
 
