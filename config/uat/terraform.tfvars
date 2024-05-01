@@ -12,7 +12,7 @@ db_a_cidr = "10.31.4.0/24"
 db_b_cidr = "10.31.5.0/24"
 
 // SSL Cert ID
-certificate_id = "DkW6ZwED"
+certificate_id = "EW3517l9"
 
 // DB Specs
 db_memory = "2"
