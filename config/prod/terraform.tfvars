@@ -20,7 +20,7 @@ db_disk = "10"
 db_version = "10.4.12"
 
 // CVM
-instance_type = "S5.MEDIUM2"
+instance_type = "S2.LARGE8"
 gl_fe_image = "img-22trbn9x"
 bo_fe_image = "img-22trbn9x"
 gl_be_image = "img-22trbn9x"
